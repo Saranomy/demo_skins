@@ -30,11 +30,7 @@ class GetSkinTest {
             MainScreen(mainViewModel)
         }
         GlobalScope.launch {
-            mainViewModel.skinResponseFlow.collect { skinResponse ->
-                if (skinResponse != null) {
-                    mainViewModel.skinResponseUi.value = skinResponse
-                }
-            }
+            mainViewModel.collectSkin()
         }
         composeTestRule.waitForIdle()
         composeTestRule.onNodeWithTag("input_username", useUnmergedTree = true).assertExists()

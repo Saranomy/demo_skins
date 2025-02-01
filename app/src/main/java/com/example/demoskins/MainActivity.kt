@@ -21,11 +21,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    mainViewModel.skinResponseFlow.collect { skinResponse ->
-                        if (skinResponse != null) {
-                            mainViewModel.skinResponseUi.value = skinResponse
-                        }
-                    }
+                    mainViewModel.collectSkin()
                 }
             }
         }

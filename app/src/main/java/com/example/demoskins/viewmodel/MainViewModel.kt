@@ -35,6 +35,14 @@ class MainViewModel : ViewModel() {
         service = retrofit.create(AshconService::class.java)
     }
 
+    suspend fun collectSkin() {
+        skinResponseFlow.collect { skinResponse ->
+            if (skinResponse != null) {
+                skinResponseUi.value = skinResponse
+            }
+        }
+    }
+
     fun getSkin() {
         viewModelScope.launch(Dispatchers.IO) {
             isLoading.value = true
